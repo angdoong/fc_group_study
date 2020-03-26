@@ -73,7 +73,6 @@ header {
     padding: 20px 0px;
     font-size: 16px;
     line-height: 1;
-    vertical-align: baseline;
     color: #333;
     text-decoration: none;
     /* background-color: aquamarine; */
@@ -140,7 +139,7 @@ header {
 */
 
 /* 방법02 : transform */
-.menu-item .submenu {  
+/* .menu-item .submenu {  
     position: absolute;
     width: 150px;
     margin: 0;
@@ -158,11 +157,43 @@ header {
 .menu-item:hover .submenu {
     transform: scaleY(1);
     padding: 10px 0;
-}
+} */
 
 /*
     1. transform: scaleY(1.5); : Y축으로 1.5배 커지기
     2. transform-origin: top;  요소의 변환에 대한 원점을 설정 
+*/
+
+/* 03. transtion의 문제점 해결찾음!! */
+.menu-item .submenu {  
+    position: absolute;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    list-style: none;
+    text-align: center;
+    color: #ddd;
+    background-color: #333;
+
+    overflow: hidden;
+    max-height: 0px; 
+    transition-property: max-height, padding;
+    transition-duration: 1s, 0.5s; 
+    transition-delay: 0s, 0s;
+}
+.menu-item:hover .submenu {
+    max-height: 800px;
+}
+.menu-item .submenu::after,
+.menu-item .submenu::before {
+    content:"";
+    display:block;
+    height:10px;
+}
+/*
+    1. .submenu의 padding 0 처리
+    2. .submenu::after/before 을 이용하여 패딩역할하기
 */
 /* //네비게이션 */
 
