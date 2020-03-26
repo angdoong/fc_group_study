@@ -1,0 +1,168 @@
+/* reset */
+body > * {
+    line-height: 1.4;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+/* //reset */
+
+.a11y-hidden {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+header {
+    overflow: hidden;
+    /* background-color: orange; */
+}
+.logo {
+    float: left;
+    width: 160px;
+    margin: 0;
+    background: pink;
+}
+.logo a {
+    display: block;
+}
+.logo img {
+    display: block;
+    width: 100%;
+}
+/* 회원가입 영역 */
+.member {
+    float: right;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    /* background: #333; */
+}
+.member li {
+    display: inline-block;
+}
+.member li a {
+    display: block;
+    padding: 22px 5px;
+    font-size: 14px;
+    color: #999;
+}
+/* //회원가입 영역 */
+/* 네비게이션 */
+.navigation {
+    float: left;
+    margin-left: 20px;
+    /* background-color: pink; */
+}
+.menu {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+.menu-item {
+    display: inline-block;
+}
+
+.menu-item .menu-link {
+    position: relative;
+    display: block;
+    margin: 0 15px;
+    padding: 20px 0px;
+    font-size: 16px;
+    line-height: 1;
+    vertical-align: baseline;
+    color: #333;
+    text-decoration: none;
+    /* background-color: aquamarine; */
+}
+
+.menu-item .menu-link::after {
+    content:"";
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.5s;
+}
+.menu-item:hover .menu-link::after {
+    width: 50%;
+}
+.menu-item .menu-link::before {
+    content:"";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.5s;
+}
+.menu-item:hover .menu-link::before {
+    left: 0;
+    width: 50%;
+}
+
+/* --- transition을 height로 주기 싫다아아! --- */
+/* 방법01 : max-height */
+/* .menu-item .submenu {  
+    position: absolute;
+    width: 150px;
+    margin: 0;
+    padding: 10px 0;
+    line-height: 1.5;
+    list-style: none;
+    text-align: center;
+    color: #ddd;
+    background-color: #333;
+
+    overflow: hidden;
+    max-height: 0px; 
+    transition-property: max-height, padding;
+    transition-duration: 1s, 0.5s; 
+    transition-delay: 0s, 0.2s;
+}
+.menu-item:hover .submenu {
+    padding: 10px 0;
+    max-height: 800px;
+} */
+
+/*
+    1. 글자 가리기위해서 ovh
+    2. transition에 height auto가 안되서, 메뉴중 가장 큰값을 임의로 정해서 max-height를 줌
+    3. padding delay 값을 많이주면 처음 호버시 높이가 뜨고 패딩이 늘어나는느낌 / 0을주면 접힐때 패딩이 먼저 없어지고 높이가 줄어들음
+*/
+
+/* 방법02 : transform */
+.menu-item .submenu {  
+    position: absolute;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    list-style: none;
+    text-align: center;
+    color: #ddd;
+    background-color: #333;
+
+    transform: scaleY(0); 
+    transform-origin: top; 
+    transition: transform 0.5s ease;
+}
+.menu-item:hover .submenu {
+    transform: scaleY(1);
+    padding: 10px 0;
+}
+
+/*
+    1. transform: scaleY(1.5); : Y축으로 1.5배 커지기
+    2. transform-origin: top;  요소의 변환에 대한 원점을 설정 
+*/
+/* //네비게이션 */
+
